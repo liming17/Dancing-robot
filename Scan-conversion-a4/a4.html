@@ -93,16 +93,17 @@ void insideSphere(float x, float y) {
 //  insideSquare()
 ///////////////////////////////////////////
 
+
 void insideSquare(float x, float y) {
   float xmin = 600.0;
   float ymin = 100.0;
   float size = 100.0;
-  float xmax = 610.0;
-  float ymax = 110.0;
-  float e0 = 110.0 - y;
-  float e1 = y - 100.0;
-  float e2 = x - 600.0;
-  float e3 = 610.0 - x;
+  float xmax = xmin + size;
+  float ymax = ymin + size;
+  float e0 = ymax - y;
+  float e1 = y - ymin;
+  float e2 = x - xmin;
+  float e3 = xmax - x;
 
 
 
