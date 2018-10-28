@@ -121,10 +121,16 @@ void insideSquare(float x, float y) {
 ///////////////////////////////////////////
 
 void insideCircle(float x, float y) {
-    // circle specification
-  vec2 center = vec2(600,500);
+     vec2 center = vec2(600,500);
   float r1 = 100.0;
   float r2 = 110.0;
+ float e1 = pow((x - 600.0), 2.0) + pow((y - 500.0), 2.0) - pow(r1, 2.0);
+ float e2 = pow((x - 600.0), 2.0) + pow((y - 500.0), 2.0) - pow(r2, 2.0);
+
+  if (e1 > 0.0 && e2 < 0.0 ) {
+    gl_FragColor = vec4(1,1,1,0); 
+  }
+
 
 // Q1(b) CODE GOES HERE
 
