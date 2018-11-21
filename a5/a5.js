@@ -287,9 +287,8 @@ var marbleMaterial = new THREE.ShaderMaterial( {
            uPoszTexture: {type: 't', value: poszTexture},
            myColor: { value: new THREE.Vector4(0.8,0.8,0.6,1.0) }
         },
-	vertexShader: document.getElementById( 'myVertShader' ).textContent,
-	fragmentShader: document.getElementById( 'pnoiseFragShader' ).textContent
-        //side: THREE.DoubleSide
+  vertexShader: document.getElementById( 'myVertShader' ).textContent,
+  fragmentShader: document.getElementById( 'pnoiseFragShader' ).textContent
 } );
 
 marbleGeometry = new THREE.PlaneBufferGeometry(4,4);
@@ -368,6 +367,8 @@ vcsLight.applyMatrix4(camera.matrixWorldInverse);
   holeyMaterial.uniforms.lightPosition.value.needsUpdate = true;
   envmapMaterial.uniforms.lightPosition.value = vcsLight;
   envmapMaterial.uniforms.lightPosition.value.needsUpdate = true;
+  marbleMaterial.uniforms.lightPosition.value = vcsLight;
+  marbleMaterial.uniforms.lightPosition.value.needsUpdate = true;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////
@@ -379,6 +380,8 @@ function update() {
   requestAnimationFrame(update);
   envmapMaterial.uniforms.matrixWorld.value = camera.matrixWorld;
   envmapMaterial.uniforms.matrixWorld.update = true;
+  marbleMaterial.uniforms.matrixWorld.value = camera.matrixWorld;
+  marbleMaterial.uniforms.matrixWorld.update = true;
   renderer.render(scene, camera);
 }
 
