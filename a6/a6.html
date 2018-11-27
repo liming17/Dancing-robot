@@ -122,6 +122,7 @@ float nearestT(ray myRay)
 
 vec3 localShade(vec3 P, vec3 N, vec3 I, vec3 surfColor) {
   ray shadowRay;
+  vec3 yourColor;
 
 /// TO DO:
 //  (1) compute and return simple diffuse shading, i.e., (N.L)*surfColor,
@@ -130,11 +131,27 @@ vec3 localShade(vec3 P, vec3 N, vec3 I, vec3 surfColor) {
 //      and Phong shading is not necessary. It can be added as an extra feature for the creative component
 //      if you like.
    vec3 L = normalize(lightPosition - P);
-   vec3 yourColor = dot(N,L)*surfColor;
+   //vec3 yourColor = dot(N,L)*surfColor;
+
 //  (2) now additionally check to see if the object is in shadow by building and casting
 //      a shadow ray.  If the point is in shadow, return black. Otherwise return the diffuse shading.
-
-   //vec3 yourColor = vec3(0,0,0);
+   shadowRay.origin = lightPosition;
+   shadowRay.direction = P - lightPosition;
+   float curr_t;
+   float nearest_t;
+   if(nearestSphere == scene_spheres[3]){ // for the light itself, no shadow
+    yourColor = dot(N,L)*surfColor;
+    return yourColor;
+   }
+  nearest_t = nearestT(shadowRay);  
+    
+   if(nearest_t >= 0.0 && nearest_t+epsilon < 1.0){
+    yourColor = vec3(0,0,0);
+  }else if(nearest_t+epsilon >= 1.0){
+    yourColor = dot(N,L)*surfColor;
+  }
+   // yourColor = dot(N,L)*surfColor;
+   //yourColor = vec3(0,0,0);
    return yourColor;
 }
 
