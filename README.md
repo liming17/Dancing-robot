@@ -1,3 +1,3 @@
 # Dancing-robot
 
-the motion.js for 314 a3
+Computer animation using three.js
